@@ -10,7 +10,7 @@ Manual oficial de la tienda **Luxury Store**. Aquí se explica, en lenguaje clar
 |---|---|---|
 | [01 — Introducción](01-introduccion.md) | Qué es la tienda, moneda y funcionamiento general | ✅ Disponible |
 | [02 — Instalación local](02-instalacion.md) | Cómo levantar la tienda en un ordenador | ✅ Disponible |
-| 03 — Configuración de la tienda | Moneda, envío, correo y pagos | 🚧 En preparación |
+| 03 — Configuración de la tienda | Moneda, envío, administrador y cupón | ✅ Disponible |
 | 04 — Catálogo | Categorías, productos, variantes y stock | ⏳ Pendiente |
 | 05 — Pedidos y pagos | Checkout, Stripe y estados del pedido | ⏳ Pendiente |
 | 06 — Clientes | Registro, acceso y área personal | ⏳ Pendiente |
