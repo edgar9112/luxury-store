@@ -93,6 +93,23 @@ php artisan migrate:status
 - `php artisan about` muestra la versión de Laravel, PHP y la base de datos.
 - `php artisan migrate:status` debe mostrar todas las migraciones como `Ran`.
 
+## Ejecutar los tests
+
+Los tests usan **SQLite en memoria**, así que no tocan la base de datos real. Necesitan las extensiones `pdo_sqlite` y `sqlite3` activas en `php.ini`:
+
+```ini
+extension=pdo_sqlite
+extension=sqlite3
+```
+
+Después de activarlas, ejecuta:
+
+```powershell
+php artisan test
+```
+
+Deberías ver todos los tests en verde (`PASS`).
+
 ## Problemas frecuentes
 
 | Problema | Solución |
