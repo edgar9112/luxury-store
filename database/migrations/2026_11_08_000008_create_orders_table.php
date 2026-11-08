@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('status', 20)->default('pending');
             $table->string('payment_status', 20)->default('pending');
             $table->string('payment_method', 30)->nullable();
-            $table->string('currency', 3)->default('EUR');
+            $table->string('currency', 3)->default('USD');
             $table->unsignedInteger('subtotal_cents');
             $table->unsignedInteger('shipping_cents')->default(0);
             $table->unsignedInteger('discount_cents')->default(0);
