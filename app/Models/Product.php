@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -79,6 +80,34 @@ class Product extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * Nombre del dibujo vectorial que representa el producto.
+     */
+    public function artName(): string
+    {
+        $name = Str::lower($this->name);
+
+        return match (true) {
+            $this->category?->slug === 'relojes' => 'watch',
+            $this->category?->slug === 'ropa' => str_contains($name, 'camisa') ? 'shirt' : 'coat',
+            $this->category?->slug === 'calzado' => str_contains($name, 'botín') ? 'boot' : 'sneaker',
+            default => 'bag',
+        };
+    }
+
+    /**
+     * Fondo editorial que acompaña al dibujo del producto.
+     */
+    public function toneClass(): string
+    {
+        return match ($this->category?->slug) {
+            'relojes' => 'tone-charcoal',
+            'ropa' => 'tone-stone',
+            'calzado' => 'tone-sand',
+            default => 'tone-clay',
+        };
     }
 
     public function imageUrl(): string

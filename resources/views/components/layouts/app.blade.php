@@ -55,11 +55,12 @@
                     aria-label="Mi cuenta">
                     <x-ui-icon name="user" />
                 </a>
-                <a href="#" class="relative grid h-10 w-10 place-items-center rounded-full transition hover:bg-gold/10"
+                <a href="{{ route('cart.index') }}"
+                    class="relative grid h-10 w-10 place-items-center rounded-full transition hover:bg-gold/10"
                     aria-label="Bolsa de compra">
                     <x-ui-icon name="bag" />
                     <span
-                        class="absolute right-0.5 top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-gold-deep px-1 text-[10px] font-semibold text-ivory">0</span>
+                        class="absolute right-0.5 top-0.5 grid h-4 min-w-4 place-items-center rounded-full bg-gold-deep px-1 text-[10px] font-semibold text-ivory">{{ $cartCount ?? 0 }}</span>
                 </a>
                 <button type="button" class="grid h-10 w-10 place-items-center rounded-full transition hover:bg-gold/10 lg:hidden"
                     @click="open = !open" :aria-expanded="open.toString()" aria-label="Abrir menú">
@@ -154,6 +155,7 @@
         </div>
     </footer>
 
+    @stack('scripts')
     @livewireScripts
 </body>
 

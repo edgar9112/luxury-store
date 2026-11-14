@@ -188,4 +188,16 @@
     .tone-charcoal {
         background: radial-gradient(90% 90% at 30% 10%, #d9c7a5 0%, #c3a97f 48%, #a88c5f 100%);
     }
+
+    details > summary {
+        list-style: none;
+    }
+
+    details > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[open] > summary span[aria-hidden="true"] {
+        transform: rotate(45deg);
+    }
 }
