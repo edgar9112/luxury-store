@@ -18,6 +18,7 @@ class Order extends Model
         'number',
         'user_id',
         'coupon_id',
+        'cart_id',
         'status',
         'payment_status',
         'payment_method',
@@ -67,6 +68,11 @@ class Order extends Model
     public function coupon(): BelongsTo
     {
         return $this->belongsTo(Coupon::class);
+    }
+
+    public function cart(): BelongsTo
+    {
+        return $this->belongsTo(Cart::class);
     }
 
     public function items(): HasMany

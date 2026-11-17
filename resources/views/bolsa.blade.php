@@ -173,12 +173,12 @@
                             </div>
                         @endif
 
-                        <button type="button" class="btn btn-gold mt-6 w-full cursor-not-allowed opacity-60" disabled
-                            title="El pago con Stripe se habilitará en el siguiente paso">
+                        <a href="{{ route('checkout.index') }}" class="btn btn-gold mt-6 w-full">
+                            <x-ui-icon name="lock" :size="17" />
                             Finalizar compra
-                        </button>
+                        </a>
                         <p class="text-muted mt-3 text-center text-[11px]">
-                            Pago con Stripe en USD, disponible muy pronto.
+                            Pago seguro con Stripe en USD. En local se usa modo demostración.
                         </p>
                     </div>
 

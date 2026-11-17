@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\ProductVariant;
+use App\Services\CartService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function __construct(private readonly CartService $carts) {}
+
     public function index(Request $request): View
     {
-        $cart = $this->findCart($request)?->load(['items.variant.product']);
+        $cart = $this->carts->find($request)?->load(['items.variant.product']);
 
-        $subtotal = $cart?->subtotalCents() ?? 0;
-        $shipping = $this->shippingFor($subtotal, $cart?->itemCount() ?? 0);
+        $totals = $cart
+            ? $this->carts->totals($cart)
+            : ['subtotal' => 0, 'shipping' => 0, 'discount' => 0, 'total' => 0, 'item_count' => 0];
 
         return view('bolsa', [
             'items' => $cart?->items ?? collect(),
-            'subtotal' => $subtotal,
-            'shipping' => $shipping,
-            'total' => $subtotal + $shipping,
+            'subtotal' => $totals['subtotal'],
+            'shipping' => $totals['shipping'],
+            'total' => $totals['total'],
         ]);
     }
 
@@ -43,7 +46,7 @@ class CartController extends Controller
             ]);
         }
 
-        $cart = $this->resolveCart($request);
+        $cart = $this->carts->resolve($request);
 
         $item = $cart->items()->firstOrNew([
             'product_variant_id' => $variant->id,
@@ -97,51 +100,10 @@ class CartController extends Controller
             ->with('cart_status', 'Pieza retirada de la bolsa.');
     }
 
-    private function findCart(Request $request): ?Cart
-    {
-        if ($request->user()) {
-            return Cart::query()->where('user_id', $request->user()->id)->first();
-        }
-
-        return Cart::query()->where('session_id', $request->session()->getId())->first();
-    }
-
-    private function resolveCart(Request $request): Cart
-    {
-        if ($request->user()) {
-            return Cart::query()->firstOrCreate([
-                'user_id' => $request->user()->id,
-                'session_id' => null,
-            ]);
-        }
-
-        return Cart::query()->firstOrCreate([
-            'session_id' => $request->session()->getId(),
-        ]);
-    }
-
     private function ensureItemBelongsToCart(Request $request, CartItem $item): void
     {
-        $cart = $this->findCart($request);
+        $cart = $this->carts->find($request);
 
         abort_if($cart === null || (int) $item->cart_id !== (int) $cart->id, 404);
-    }
-
-    /**
-     * Envío en céntimos: gratis al alcanzar el umbral y sin cargo en bolsas vacías.
-     */
-    private function shippingFor(int $subtotal, int $itemCount): int
-    {
-        if ($itemCount === 0 || $subtotal <= 0) {
-            return 0;
-        }
-
-        $threshold = (int) config('store.free_shipping_threshold_cents');
-
-        if ($threshold > 0 && $subtotal >= $threshold) {
-            return 0;
-        }
-
-        return (int) config('store.shipping_cents');
     }
 }
