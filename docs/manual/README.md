@@ -12,7 +12,7 @@ Manual oficial de la tienda **Luxury Store**. Aquí se explica, en lenguaje clar
 | [02 — Instalación local](02-instalacion.md) | Cómo levantar la tienda en un ordenador | ✅ Disponible |
 | [03 — Configuración de la tienda](03-configuracion-tienda.md) | Moneda, envío, administrador y cupón | ✅ Disponible |
 | [04 — Catálogo, ficha y bolsa](04-catalogo.md) | Filtros del catálogo, ficha de producto y bolsa de compra | ✅ Disponible |
-| 05 — Pedidos y pagos | Checkout, Stripe y estados del pedido | ⏳ Pendiente |
+| [05 — Pedidos y pagos](05-pedidos-pagos.md) | Checkout, Stripe y estados del pedido | ✅ Disponible |
 | 06 — Clientes | Registro, acceso y área personal | ⏳ Pendiente |
 | 07 — Panel de administración | Productos, pedidos, cupones y usuarios | ⏳ Pendiente |
 | [08 — Publicación en hosting](08-publicacion.md) | Cómo subir la tienda a producción en USD | ✅ Disponible |

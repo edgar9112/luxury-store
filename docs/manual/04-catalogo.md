@@ -11,7 +11,7 @@ Este capítulo explica cómo recorrer la tienda: el catálogo con filtros, la fi
 | Catálogo con filtros y orden | ✅ Disponible |
 | Ficha de producto con tallas y acabados | ✅ Disponible |
 | Bolsa de compra (añadir, cambiar cantidad, quitar) | ✅ Disponible |
-| Pago y checkout con Stripe | ⏳ Pendiente (capítulo 05) |
+| [Pago y checkout con Stripe](05-pedidos-pagos.md) | ✅ Disponible |
 | Área de cliente y pedidos | ⏳ Pendiente (capítulo 06) |
 
 ## 2. El catálogo
