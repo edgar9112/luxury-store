@@ -1,3 +1,23 @@
+# Luxury Store
+
+Tienda de artículos de lujo construida con Laravel 12, Filament 5, Livewire 4 y Tailwind 4. Importes en **USD**.
+
+- [Estado del proyecto: qué está hecho y qué falta](docs/ESTADO-PROYECTO.md)
+- [Manual de usuario](docs/manual/README.md)
+
+## Puesta en marcha
+
+```bash
+composer install
+npm install
+php artisan migrate --seed
+npm run dev
+```
+
+Verificación: `php artisan test`, `php vendor/bin/pint` y `npm run build`.
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
